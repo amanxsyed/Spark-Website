@@ -1,0 +1,337 @@
+/* ==================================================================
+   THEME LAYER  —  load this LAST, after the other four stylesheets.
+
+   Two jobs:
+   1. Repaints the whole site on a new palette: true neutral black,
+      warm paper, and a champagne metallic. Black / white / gold is
+      the combination luxury property marketing keeps returning to;
+      the Spark crimson is now held back for actions only, so it
+      lands harder when it does appear.
+   2. Adds a light and a dark theme. Everything is driven by the
+      tokens below, so `data-theme="dark"` on <html> flips the whole
+      site — no component knows which theme it is in.
+   ================================================================== */
+
+:root,
+[data-theme='light'] {
+  color-scheme: light;
+
+  /* surfaces */
+  --paper: #faf9f6; /* page */
+  --mist: #f1ede6; /* alternating band */
+  --sand: #e5ddce;
+  --midnight: #0b0c0e; /* inverted bands, hero, footer */
+  --midnight-lift: #17181c;
+  --slate: #202227;
+
+  /* ink */
+  --ink: #0f1012;
+  --ink-soft: #3d3f44;
+  --muted: #6f7176;
+  --muted-dark: #9b9da3;
+
+  /* metal + accent */
+  --gold: #a8834a;
+  --gold-soft: #cdb083;
+  --gold-line: rgba(168, 131, 74, 0.42);
+  --spark: #c8102e;
+  --spark-deep: #94091f;
+
+  /* lines */
+  --rule: rgba(15, 16, 18, 0.13);
+  --rule-strong: rgba(15, 16, 18, 0.26);
+  --rule-dark: rgba(255, 255, 255, 0.13);
+  --rule-dark-strong: rgba(255, 255, 255, 0.28);
+
+  --bar-bg: rgba(250, 249, 246, 0.94);
+  --shadow-lift: 0 30px 70px -34px rgba(11, 12, 14, 0.4);
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --paper: #0a0b0d;
+  --mist: #101216;
+  --sand: #191b20;
+  --midnight: #141619; /* inverted bands read as lifted panels */
+  --midnight-lift: #1c1f24;
+  --slate: #24272d;
+
+  --ink: #f1efea;
+  --ink-soft: #c2c0ba;
+  --muted: #8c8e94;
+  --muted-dark: #9b9da3;
+
+  --gold: #c9a96a;
+  --gold-soft: #e0c795;
+  --gold-line: rgba(201, 169, 106, 0.4);
+  --spark: #e0193b;
+  --spark-deep: #b8112f;
+
+  --rule: rgba(255, 255, 255, 0.12);
+  --rule-strong: rgba(255, 255, 255, 0.26);
+
+  --bar-bg: rgba(10, 11, 13, 0.93);
+  --shadow-lift: 0 30px 70px -34px rgba(0, 0, 0, 0.8);
+}
+
+html {
+  background: var(--paper);
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  transition: background-color 0.5s var(--ease), color 0.5s var(--ease);
+}
+
+/* ---------------- typography: quieter, more editorial ---------------- */
+
+.display {
+  font-weight: 320;
+}
+
+.d-hero {
+  font-size: clamp(2.9rem, 7.6vw, 6.8rem);
+  letter-spacing: -0.034em;
+}
+
+.d-1 {
+  letter-spacing: -0.032em;
+}
+
+.masthead h2 {
+  max-width: 19ch;
+}
+
+/* ---------------- champagne detailing ---------------- */
+
+/* the small diamonds throughout become metal, not red */
+.hero-kicker i,
+.crumbs i,
+.ticker-item i,
+.prose ul li::before,
+.footer-wordmark i {
+  background: var(--gold);
+}
+
+.step-n {
+  color: var(--gold);
+}
+
+.finder-tab[aria-selected='true']::after,
+.dot[aria-current='true'] {
+  background: var(--gold);
+}
+
+.notice {
+  background: color-mix(in srgb, var(--paper) 60%, var(--mist));
+  border-left-color: var(--gold);
+}
+
+.tlink::after {
+  background: var(--gold);
+}
+.tlink--on::after {
+  background: var(--gold-line);
+}
+.tlink--on:hover::after {
+  background: var(--gold);
+}
+
+/* status flags read as metal; crimson is reserved for actions */
+.card-flag {
+  background: var(--gold);
+  color: #14100a;
+  font-weight: 560;
+}
+.card-flag[data-tone='quiet'] {
+  background: rgba(10, 11, 13, 0.7);
+  color: #fff;
+}
+
+.card:hover .card-media {
+  box-shadow: inset 0 0 0 1px var(--gold-line);
+}
+
+.rail-btn:hover:not(:disabled) {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+.advisor-mono {
+  background: linear-gradient(155deg, var(--mist) 0%, var(--sand) 100%);
+  color: var(--ink);
+}
+.advisor:hover .advisor-mono {
+  background: linear-gradient(155deg, var(--midnight-lift), var(--midnight));
+  color: var(--gold-soft);
+}
+
+.split-media figcaption,
+.panel::after {
+  background: linear-gradient(0deg, rgba(6, 7, 9, 0.9) 0%, rgba(6, 7, 9, 0) 62%);
+}
+
+.hero-scrim {
+  background: linear-gradient(
+      180deg,
+      rgba(6, 7, 9, 0.8) 0%,
+      rgba(6, 7, 9, 0.3) 26%,
+      rgba(6, 7, 9, 0.55) 62%,
+      rgba(6, 7, 9, 0.95) 100%
+    ),
+    linear-gradient(
+      100deg,
+      rgba(6, 7, 9, 0.9) 0%,
+      rgba(6, 7, 9, 0.62) 40%,
+      rgba(6, 7, 9, 0.14) 82%
+    );
+}
+
+.chip {
+  box-shadow: 0 0 0 1px var(--gold-line);
+}
+
+/* buttons: one crimson action per view, everything else quiet metal */
+.btn--ink {
+  background: var(--ink);
+  color: var(--paper);
+}
+.btn--ink:hover {
+  background: var(--midnight-lift);
+  color: #fff;
+}
+
+.btn--gold {
+  background: transparent;
+  border-color: var(--gold-line);
+  color: var(--gold);
+}
+.btn--gold:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #14100a;
+}
+
+/* ---------------- header ---------------- */
+
+.masthead-bar[data-solid='true'] {
+  background: var(--bar-bg);
+  color: var(--ink);
+}
+.masthead-bar[data-solid='true']::after {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--gold-line) 22%,
+    var(--gold-line) 78%,
+    transparent
+  );
+}
+
+.mega {
+  background: var(--paper);
+  box-shadow: var(--shadow-lift);
+}
+
+/* the phone number gives way to a search field once you scroll —
+   the nav becomes the search bar instead of stacking a second one */
+.bar-search {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  height: 38px;
+  padding: 0 0.35rem 0 0.85rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 999px;
+  transition: border-color 0.3s var(--ease);
+}
+.bar-search:focus-within {
+  border-color: var(--gold);
+}
+.masthead-bar[data-solid='true'] .bar-search {
+  display: flex;
+}
+.masthead-bar[data-solid='true'] .bar-phone {
+  display: none;
+}
+.bar-search input {
+  width: 168px;
+  border: 0;
+  background: transparent;
+  font-size: 0.85rem;
+  padding: 0;
+}
+.bar-search input:focus {
+  outline: none;
+}
+.bar-search button {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.3s var(--ease);
+}
+.bar-search button:hover {
+  color: var(--gold);
+}
+
+.theme-toggle {
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 0.3s var(--ease), color 0.3s var(--ease),
+    transform 0.5s var(--ease);
+}
+.theme-toggle:hover {
+  border-color: var(--rule-strong);
+  color: var(--gold);
+  transform: rotate(-18deg);
+}
+.drawer .theme-toggle {
+  border-color: var(--rule-dark-strong);
+  color: #fff;
+}
+
+/* ---------------- interior pages + footer ---------------- */
+
+.page-head::after {
+  background: linear-gradient(
+    180deg,
+    rgba(6, 7, 9, 0.9),
+    rgba(6, 7, 9, 0.62) 45%,
+    rgba(6, 7, 9, 0.96)
+  );
+}
+
+.footer,
+.hero {
+  background: #0b0c0e;
+}
+[data-theme='dark'] .footer,
+[data-theme='dark'] .hero {
+  background: #08090b;
+}
+
+.footer-legal a:hover,
+.city-list a:hover {
+  color: var(--gold-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body,
+  .theme-toggle {
+    transition: none;
+  }
+}

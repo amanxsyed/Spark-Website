@@ -1,0 +1,401 @@
+/* ------------------------------------------------------------------
+   Spark Realty — design tokens
+   Palette is drawn from the GTA skyline at blue hour: midnight glass,
+   warm lit windows, and the brand crimson used only where it must be.
+------------------------------------------------------------------- */
+
+:root {
+  /* surfaces */
+  --midnight: #0b1220;
+  --midnight-lift: #131e31;
+  --slate: #1e2a3c;
+  --paper: #fbf9f7;
+  --mist: #eeeae4;
+  --sand: #e2dbd1;
+
+  /* ink */
+  --ink: #131a24;
+  --ink-soft: #3f4a58;
+  --muted: #6d7684;
+  --muted-dark: #97a3b4;
+
+  /* accent */
+  --spark: #c8102e;
+  --spark-deep: #920b21;
+  --spark-glow: rgba(200, 16, 46, 0.16);
+  --ice: #a3b8d0;
+  --lamp: #f0c98a;
+
+  /* lines */
+  --rule: rgba(19, 26, 36, 0.14);
+  --rule-strong: rgba(19, 26, 36, 0.28);
+  --rule-dark: rgba(255, 255, 255, 0.14);
+  --rule-dark-strong: rgba(255, 255, 255, 0.3);
+
+  /* type */
+  --font-display: var(--font-fraunces), "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-inter-tight), "Helvetica Neue", Arial, sans-serif;
+
+  /* metrics */
+  --gutter: clamp(1.25rem, 4.6vw, 4.5rem);
+  --shell: 1360px;
+  --radius: 2px;
+  --radius-lg: 4px;
+
+  /* motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0.05, 0.36, 1);
+  --dur: 0.55s;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.62;
+  font-weight: 400;
+  letter-spacing: -0.006em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+body.is-locked {
+  overflow: hidden;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+::selection {
+  background: var(--spark);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--spark);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 200;
+  background: var(--midnight);
+  color: #fff;
+  padding: 0.85rem 1.25rem;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+/* ---------------- type scale ---------------- */
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-optical-sizing: auto;
+  letter-spacing: -0.028em;
+  line-height: 0.94;
+}
+
+.d-hero {
+  font-size: clamp(3.1rem, 8.2vw, 7.4rem);
+}
+
+.d-1 {
+  font-size: clamp(2.35rem, 5.2vw, 4.35rem);
+  line-height: 0.98;
+}
+
+.d-2 {
+  font-size: clamp(1.9rem, 3.5vw, 3rem);
+  line-height: 1.02;
+}
+
+.d-3 {
+  font-size: clamp(1.3rem, 2vw, 1.7rem);
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+}
+
+.lede {
+  font-size: clamp(1.06rem, 1.35vw, 1.26rem);
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 46ch;
+}
+
+.meta {
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  font-weight: 450;
+}
+
+.on-dark {
+  color: #f4f6f9;
+}
+.on-dark .lede,
+.on-dark .meta {
+  color: var(--muted-dark);
+}
+
+/* ---------------- shell + grid ---------------- */
+
+.shell {
+  width: 100%;
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: clamp(4.5rem, 9vw, 8.5rem);
+  position: relative;
+}
+
+.section--tight {
+  padding-block: clamp(3.25rem, 6vw, 5.5rem);
+}
+
+.dark {
+  background: var(--midnight);
+  color: #f4f6f9;
+}
+
+/* Section masthead: a heading with a data rail beneath it.
+   The rail carries real facts about the section, not decoration. */
+.masthead {
+  display: grid;
+  gap: 1.6rem;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: end;
+  margin-bottom: clamp(2.25rem, 4vw, 3.5rem);
+}
+
+@media (min-width: 900px) {
+  .masthead {
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    gap: 3rem;
+  }
+}
+
+.rail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 1.4rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.83rem;
+  color: var(--muted);
+}
+.dark .rail,
+.on-dark .rail {
+  border-color: var(--rule-dark);
+  color: var(--muted-dark);
+}
+.rail b {
+  font-weight: 550;
+  color: var(--ink);
+}
+.dark .rail b,
+.on-dark .rail b {
+  color: #fff;
+}
+
+/* ---------------- buttons + links ---------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.95rem 1.6rem;
+  font-size: 0.92rem;
+  font-weight: 520;
+  letter-spacing: -0.005em;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background-color 0.3s var(--ease), color 0.3s var(--ease),
+    border-color 0.3s var(--ease), transform 0.3s var(--ease);
+}
+
+.btn--spark {
+  background: var(--spark);
+  color: #fff;
+}
+.btn--spark:hover {
+  background: var(--spark-deep);
+}
+
+.btn--ink {
+  background: var(--midnight);
+  color: #fff;
+}
+.btn--ink:hover {
+  background: var(--slate);
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: var(--rule-strong);
+  color: var(--ink);
+}
+.btn--ghost:hover {
+  border-color: var(--ink);
+}
+
+.on-dark .btn--ghost,
+.dark .btn--ghost {
+  border-color: var(--rule-dark-strong);
+  color: #fff;
+}
+.on-dark .btn--ghost:hover,
+.dark .btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: #fff;
+}
+
+.btn--wide {
+  width: 100%;
+}
+
+/* underline that draws on hover — used for text links */
+.tlink {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 2px;
+  font-weight: 480;
+}
+.tlink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.45s var(--ease);
+}
+.tlink:hover::after,
+.tlink:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.tlink--on::after {
+  transform: scaleX(1);
+  transform-origin: left;
+  background: var(--rule-strong);
+}
+.tlink--on:hover::after {
+  background: currentColor;
+}
+
+/* ---------------- reveal ---------------- */
+
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* image clip reveal — the only motion used on media */
+.clip {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1.15s var(--ease);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.clip.is-in {
+  clip-path: inset(0 0 0 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal,
+  .clip {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
