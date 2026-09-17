@@ -5,6 +5,7 @@ import { SiteFooter } from '@/components/SiteFooter';
 import '@/styles/base.css';
 import '@/styles/chrome.css';
 import '@/styles/home.css';
+import '@/styles/homeV2.css';
 import '@/styles/pages.css';
 
 export const metadata: Metadata = {
