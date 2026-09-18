@@ -36,6 +36,7 @@ export type Project = {
   occupancy: string;
   status: string;
   tone?: 'quiet';
+  kind?: string;
   image: string;
 };
 
