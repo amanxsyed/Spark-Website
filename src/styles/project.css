@@ -1,0 +1,212 @@
+/* ==================================================================
+   Project detail + project listing (Red Bricks data)
+   Every class starts with `pj-` so nothing else is affected.
+   ================================================================== */
+
+.pj { --pj-line: rgba(19, 26, 36, 0.12); }
+
+/* ------------------------------------------------------------- hero */
+
+.pj-hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: flex-end;
+  min-height: min(70svh, 620px);
+  padding-block: clamp(6rem, 14vh, 9rem) clamp(2rem, 5vh, 3.5rem);
+  color: #fff;
+  background: #12151b;
+  overflow: hidden;
+}
+.pj-hero img { object-fit: cover; z-index: -2; }
+.pj-hero-shade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(10, 12, 16, 0.6) 0%, rgba(10, 12, 16, 0) 30%),
+    linear-gradient(0deg, rgba(10, 12, 16, 0.85) 0%, rgba(10, 12, 16, 0.1) 60%);
+}
+.pj-hero-inner { width: 100%; }
+.pj-crumb { font-size: 0.88rem; color: rgba(255, 255, 255, 0.78); }
+.pj-crumb a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.pj-hero h1 {
+  margin-top: 0.6rem;
+  font-family: var(--font-display);
+  font-weight: 350;
+  font-size: clamp(2.2rem, 5.5vw, 4.2rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+.pj-sub { margin-top: 0.6rem; color: rgba(255, 255, 255, 0.85); }
+.pj-badges { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin-top: 1.4rem; }
+.pj-badges .hx-flag { position: static; }
+.pj-price {
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* ------------------------------------------------------------ layout */
+
+.pj-grid { display: grid; gap: clamp(2.5rem, 5vw, 4rem); }
+@media (min-width: 1000px) {
+  .pj-grid { grid-template-columns: minmax(0, 1fr) 360px; align-items: start; }
+  .pj-side { position: sticky; top: 6.5rem; }
+}
+.pj-main { display: grid; gap: clamp(2.5rem, 5vw, 3.5rem); }
+.pj-main .hx-h2 { font-size: clamp(1.6rem, 3vw, 2.3rem); margin-bottom: 1rem; }
+.pj-body { line-height: 1.65; color: var(--ink-soft); max-width: 68ch; white-space: pre-line; }
+.pj-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* ------------------------------------------------------------- facts */
+
+.pj-facts {
+  display: grid;
+  gap: 0;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  border-top: 1px solid var(--pj-line);
+}
+.pj-facts > div { padding: 0.9rem 0; border-bottom: 1px solid var(--pj-line); padding-right: 1.5rem; }
+.pj-facts dt { font-size: 0.82rem; color: var(--muted); }
+.pj-facts dd { margin-top: 0.2rem; font-weight: 550; }
+
+/* ------------------------------------------------------------- table */
+
+.pj-table-wrap { overflow-x: auto; }
+.pj-table { width: 100%; border-collapse: collapse; min-width: 520px; font-size: 0.93rem; }
+.pj-table th,
+.pj-table td { text-align: left; padding: 0.75rem 1rem 0.75rem 0; border-bottom: 1px solid var(--pj-line); }
+.pj-table th { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+
+/* --------------------------------------------------------- floorplans */
+
+.pj-plans {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  margin-top: 1.5rem;
+}
+.pj-plans li { border: 1px solid var(--pj-line); border-radius: 14px; overflow: hidden; padding-bottom: 1rem; }
+.pj-plan-img {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background: #f4f4f5;
+  display: grid;
+  place-items: center;
+}
+.pj-plan-img img { object-fit: contain; padding: 0.5rem; }
+.pj-plan-empty { color: var(--muted); font-size: 0.85rem; }
+.pj-plans h3 { margin: 0.9rem 1rem 0.2rem; font-size: 1rem; font-weight: 600; }
+.pj-plans p { margin: 0 1rem; font-size: 0.85rem; color: var(--muted); }
+.pj-plan-price { margin-top: 0.4rem !important; color: var(--spark) !important; font-weight: 600; }
+
+/* ------------------------------------------------- amenities, chips */
+
+.pj-amenities,
+.pj-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.pj-amenities li,
+.pj-chips li {
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--pj-line);
+  font-size: 0.9rem;
+}
+.pj-chips li { border-color: transparent; background: rgba(200, 16, 46, 0.08); color: var(--spark); font-weight: 550; }
+
+.pj-deposits { display: grid; gap: 0.5rem; margin-top: 1rem; counter-reset: dep; }
+.pj-deposits li {
+  padding: 0.75rem 1rem;
+  border-left: 3px solid var(--spark);
+  background: #f7f7f8;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.95rem;
+}
+
+/* --------------------------------------------------------- documents */
+
+.pj-docs { display: grid; gap: 0.5rem; }
+.pj-docs a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--pj-line);
+  border-radius: 12px;
+  font-weight: 540;
+  transition: border-color 0.25s var(--ease), color 0.25s var(--ease);
+}
+.pj-docs a:hover { border-color: var(--spark); color: var(--spark); }
+.pj-locked {
+  margin-top: 1.25rem;
+  padding: 1.4rem;
+  border-radius: 16px;
+  background: #f7f7f8;
+  display: grid;
+  gap: 1rem;
+  justify-items: start;
+}
+.pj-locked p { display: flex; align-items: center; gap: 0.5rem; color: var(--ink-soft); }
+
+/* -------------------------------------------------------------- side */
+
+.pj-card {
+  padding: 1.5rem;
+  border: 1px solid var(--pj-line);
+  border-radius: 18px;
+  display: grid;
+  gap: 1rem;
+  justify-items: start;
+}
+.pj-card-price { font-size: 1.4rem; font-weight: 650; color: var(--spark); }
+.pj-card-facts { display: grid; gap: 0.55rem; font-size: 0.93rem; color: var(--ink-soft); }
+.pj-card-facts li { display: flex; align-items: center; gap: 0.5rem; }
+.pj-card-facts svg { color: var(--spark); flex: 0 0 auto; }
+.pj-scores { font-size: 0.88rem; color: var(--muted); }
+
+.pj-form {
+  margin-top: 1.25rem;
+  padding: 1.75rem;
+  border-radius: 18px;
+  background: var(--ink);
+  color: #fff;
+}
+.pj-form-title { font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; }
+.pj-form > p { margin: 0.5rem 0 1.25rem; color: #c3ccd9; font-size: 0.95rem; }
+
+/* ----------------------------------------------------------- gallery */
+
+.pj-gallery {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  margin-top: 1.5rem;
+}
+.pj-gallery li {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #e9e9ea;
+}
+.pj-gallery img { object-fit: cover; }
+
+/* -------------------------------------------- listing page filter pills */
+
+.hx-quick a[data-active='true'] {
+  background: var(--spark);
+  border-color: var(--spark);
+  color: #fff;
+}
+.hx-section .hx-quick a { color: var(--ink); border-color: rgba(19, 26, 36, 0.2); }
+.hx-section .hx-quick a:hover { background: rgba(19, 26, 36, 0.05); }

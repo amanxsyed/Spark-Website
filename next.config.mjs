@@ -8,7 +8,8 @@ const nextConfig = {
     qualities: [75, 80],
     // When you switch to real photography hosted elsewhere (RedBricks / CDN),
     // whitelist the hostname here.
-    remotePatterns: [],
+        remotePatterns: [
+      { protocol: 'https', hostname: 'images.redbricksdata.com' },],
   },
   async headers() {
     return [

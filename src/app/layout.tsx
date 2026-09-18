@@ -7,6 +7,7 @@ import '@/styles/chrome.css';
 import '@/styles/home.css';
 import '@/styles/homeV2.css';
 import '@/styles/pages.css';
+import '@/styles/project.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.sparkrealty.ca'),
